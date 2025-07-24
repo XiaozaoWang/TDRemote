@@ -41,7 +41,8 @@ app.get("/status", async (req, res) => {
 });
 
 // WebSocket 接收来自 TD 的状态
-const wss = new WebSocket.Server({ port: 8765 });
+// const wss = new WebSocket.Server({ port: 8765 });
+const wss = new WebSocket.Server({ server }); // 👈 把 WebSocket 和 HTTP 共用同一个端口
 wss.on("connection", (ws) => {
   console.log("TD connected via WebSocket");
   ws.on("message", async (message) => {
