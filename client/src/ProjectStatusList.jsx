@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // const BACKEND_URL = "http://172.16.100.130:3000";
-const BACKEND_URL = "https://tdremote-production.up.railway.app/";
+const BACKEND_URL = "https://tdremote-production.up.railway.app";
 
 function ProjectStatusList() {
   const [projects, setProjects] = useState([]);
