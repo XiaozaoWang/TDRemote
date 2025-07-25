@@ -40,6 +40,10 @@ app.get("/status", async (req, res) => {
   res.json(allProjects);
 });
 
+const server = app.listen(port, "0.0.0.0", () => {
+  console.log(`✅ HTTP server running at http://0.0.0.0:${port}`);
+});
+
 // WebSocket 接收来自 TD 的状态
 // const wss = new WebSocket.Server({ port: 8765 });
 const wss = new WebSocket.Server({ server }); // 👈 把 WebSocket 和 HTTP 共用同一个端口
@@ -90,7 +94,7 @@ app.post("/control", async (req, res) => {
   }
 
   if (command) {
-    console.log(`✅ Sending command: ${action} to ${project}`);
+    console.log(`✅ Sending command: ${action} to ${project} via port ${port}`);
     ws.send(JSON.stringify(command));
     res.json({ success: true });
   } else {
@@ -101,7 +105,3 @@ app.post("/control", async (req, res) => {
 // app.listen(port, () => {
 //   console.log(`HTTP server running at http://localhost:${port}`);
 // });
-
-app.listen(port, "0.0.0.0", () => {
-  console.log(`HTTP server running at http://0.0.0.0:${port}`);
-});
