@@ -19,6 +19,8 @@ function ProjectStatusList() {
     a.name.localeCompare(b.name)
   );
 
+  console.log("Sorted projects:", sortedProjects);
+
   const sendCommand = (project, action) => {
     axios
       .post(`${BACKEND_URL}/control`, {
